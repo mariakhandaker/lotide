@@ -7,7 +7,7 @@ const assertEqual = function(actual, expected) {
 };
 
 const countLetters = function(input) {
-  let output = {}
+  let output = {};
   let newString = input.split(" ").join("");
   console.log(newString);
   //find each letter that exists, then count it, then push to output
