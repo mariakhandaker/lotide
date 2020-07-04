@@ -7,52 +7,36 @@ const assertEqual = function(actual, expected) {
 };
 
 function eqArrays(array1, array2) {
-  if (array1.length === array2.length && array1.every((value, index) => value === array2[index])) {
+  if ((array1.length === array2.length) && (array1.every((value, index) => value === array2[index]))) {
     return true;
   } else {
     return false;
   }
 }
 
-const eqObjects = function(object1, object2) {
-  let aKeys = Object.keys(object1);
-  let bKeys = Object.keys(object2);
-  let aValues = Object.values(object1);
-  let bValues = Object.values(object2);
-  let keysEqual = [];
-  let valuesEqual = [];
-  let answer = true;
 
-  if (aKeys.length !== bKeys.length) {
-    answer = false;
+const eqObjects = function(object1, object2) {
+  for (let key in object1) {
+    if (Object.keys(object1).length !== Object.keys(object2).length) {
+      return false;
+    }
+
+    if (typeof object1[key] !== typeof object2[key]) {
+      return false;
+    }
+
+    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+      return eqArrays(object1[key], object2[key]);
+    }
+
+    if ((typeof object1[key] === typeof object2[key]) && (object1[key] !== object2[key])) {
+      return false;
+    }
   }
   
-  for (let i of aKeys) {
-    for (let j of bKeys) {
-      if (i === j) {
-        keysEqual.push(i);
-      }
-    }
-  }
+  return true;
+}
 
-  if (keysEqual.length !== (aKeys.length || bKeys.length)) {
-    answer = false;
-  }
-
-  for (let i of aValues) {
-    for (let j of bValues) {
-      if (i === j && (!valuesEqual.includes(i))) {
-        valuesEqual.push(i);
-      }
-    }
-  }
-
-  if (valuesEqual.length !== (aValues.length || bValues.length)) {
-    answer = false;
-  }
-
-  return answer;
-};
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
