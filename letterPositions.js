@@ -17,3 +17,5 @@ const string = 'lighthouse in the house';
 console.log(letterPositions(string));
 
 //return all indices in the string where each character is found
+
+module.exports = letterPositions;

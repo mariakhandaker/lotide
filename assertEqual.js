@@ -8,7 +8,5 @@ const assertEqual = function(actual, expected) {
   }
 };
 
-
-
 // can only compare primitive values
 module.exports = assertEqual;

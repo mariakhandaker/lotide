@@ -6,8 +6,8 @@ describe("#tail", () => {
     assert.strictEqual(tail([3, 4, 5, 6, 7]), 7);
   });
   
-  it("returns '5' for ['5']", () => {
-    assert.strictEqual(tail(['5']), '5'); 
+  it("returns '6' for ['6']", () => {
+    assert.strictEqual(tail(['6']), '6'); 
   });
 
 });
